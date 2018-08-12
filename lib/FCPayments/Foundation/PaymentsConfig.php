@@ -4,11 +4,13 @@
 class PaymentsConfig
 {
     public static $paymentType = "";
-    public static $Id = "";
-    public static $Secret = "";
-    public static $Currency = "";
+    public static $id = "";
+    public static $secret = "";
+    public static $currency = "";
     public static $confirmURL = "";
     public static $linePayURL = "https://sandbox-api-pay.line.me/v2/payments/";
     public static $noticeURL = "";
-    public static $Header;       //指定轉帳帳戶
+    public static $payPalURL = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+    public static $cancelUrl = "";
+    public static $Header;
 }

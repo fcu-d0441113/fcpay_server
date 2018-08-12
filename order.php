@@ -7,7 +7,6 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/Foundation/Database.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/ProductManager.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/OrderManager.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/PayPal.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/Foundation/HelpUtil.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/UserManager.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager.php';
@@ -84,7 +83,11 @@
                     PaymentsManager::setNoticeURL("http://10.0.2.2:8888/Checkout/iSunnyServerPaid.php");
 			        break;
 			    case 2:
-					echo PayPal::getPayPalObject($orderId, $amount);
+                    PaymentsManager::setAccount("fgh351279@gmail.com");
+                    PaymentsManager::setNoticeURL("http://fcorder.fcudata.science/payment-successful.html");
+                    PaymentsManager::setCancelURL("http://fcorder.fcudata.science/payment-cancelled.html");
+                    PaymentsManager::setConfirmURL("http://fcorder.fcudata.science/Checkout/PayPalPaid.php");
+                    PaymentsManager::setCurrency('TWD');
 			        break;
 			    case 3:
                     PaymentsManager::setAccount('1591021350','49d286199c615f1d311b56a2910357f5');

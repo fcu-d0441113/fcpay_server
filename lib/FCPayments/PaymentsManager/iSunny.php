@@ -8,11 +8,11 @@ class iSunny
         //將付款資料用json格式回傳
         $message = array(
             "orderId" => $orderId,
-            "memberId" => PaymentsConfig::$Id,
+            "memberId" => PaymentsConfig::$id,
             "procCode" => "010300",
             "amount" => $amount,
             "initDateTime" => $orderDate,
-            "MAC" => self::getMAC(PaymentsConfig::$Id."010300".$amount.$orderDate),
+            "MAC" => self::getMAC(PaymentsConfig::$id."010300".$amount.$orderDate),
             "replyURL" => PaymentsConfig::$confirmURL."?orderID=".$orderId,
             "memo" => "",
             "noticeURL" => PaymentsConfig::$noticeURL."?orderID=".$orderId

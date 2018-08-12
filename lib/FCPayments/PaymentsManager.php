@@ -3,6 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/Foundation/PaymentsConfig.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/LinePay.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/iSunny.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PayPal.php';
 
 class PaymentsManager
 {
@@ -14,6 +15,7 @@ class PaymentsManager
                 return iSunny::generateiSunnyObject($orderId, $amount, $orderDate);
                 break;
             case "2":
+                return PayPal::getPayPalObject($orderId, $amount);
                 break;
             case "3":
                 LinePay::setLinePayHeader();
@@ -27,12 +29,13 @@ class PaymentsManager
     }
 
     //取得驗證結果
-    public static function getPaymentConfirm($transactionId, $amount)
+    public static function getPaymentConfirm($transactionId, $amount, $data)
     {
         switch (PaymentsConfig::$paymentType) {
             case "1":
                 break;
             case "2":
+                return PayPal::verifyTransaction($data);
                 break;
             case "3":
                 LinePay::setLinePayHeader();
@@ -69,13 +72,13 @@ class PaymentsManager
 
     private static function setPaymentId($id)
     {
-        PaymentsConfig::$Id = $id;
+        PaymentsConfig::$id = $id;
     }
 
     private static function setPaymentIdAndSecret($id, $secret)
     {
-        PaymentsConfig::$Id = $id;
-        PaymentsConfig::$Secret = $secret;
+        PaymentsConfig::$id = $id;
+        PaymentsConfig::$secret = $secret;
     }
 
     //設定ConfirmURL
@@ -92,6 +95,11 @@ class PaymentsManager
     //設定付款所用的貨幣
     public static function setCurrency($currency)
     {
-        PaymentsConfig::$Currency = $currency;
+        PaymentsConfig::$currency = $currency;
+    }
+
+    public static function setCancelURL($url)
+    {
+        PaymentsConfig::$cancelUrl = $url;
     }
 }

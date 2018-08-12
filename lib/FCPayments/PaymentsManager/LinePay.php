@@ -9,8 +9,8 @@ class LinePay
     public static function setLinePayHeader(){
         //新增header
         $header = array();
-        $header[] = 'X-LINE-ChannelId:' . PaymentsConfig::$Id;
-        $header[] = 'X-LINE-ChannelSecret:' . PaymentsConfig::$Secret;
+        $header[] = 'X-LINE-ChannelId:' . PaymentsConfig::$id;
+        $header[] = 'X-LINE-ChannelSecret:' . PaymentsConfig::$secret;
         $header[] = 'Content-Type:application/json;charset=UTF-8';
         PaymentsConfig::$Header = $header;
     }
@@ -51,7 +51,7 @@ class LinePay
             "orderId" => $orderId,
             "amount" => $amount,
             "productName" => $productName,
-            "currency" => PaymentsConfig::$Currency,
+            "currency" => PaymentsConfig::$currency,
             "langCd" => 'zh-Hant',
             "confirmUrl" => PaymentsConfig::$confirmURL.'?orderId='.
                 $orderId.'&amount='.
@@ -73,7 +73,7 @@ class LinePay
     private static function generateConfirmMessage($amount){
         $message = array(
             "amount" => $amount,
-            "currency" => PaymentsConfig::$Currency
+            "currency" => PaymentsConfig::$currency
         );
         return json_encode($message);
     }

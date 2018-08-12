@@ -30,7 +30,7 @@
          PaymentsManager::setPaymentType("3");
          PaymentsManager::setAccount('1591021350','49d286199c615f1d311b56a2910357f5');
          PaymentsManager::setCurrency('TWD');
-         $resultMessage = PaymentsManager::getPaymentConfirm($transactionId, $amount);
+         $resultMessage = PaymentsManager::getPaymentConfirm($transactionId, $amount, null);
          
          $decodeMessage = json_decode($resultMessage);
          //error_log(print_r($decodeMessage,true));
