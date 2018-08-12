@@ -7,7 +7,6 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/Foundation/Database.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/ProductManager.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/OrderManager.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/iSunny.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/PayPal.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/Foundation/HelpUtil.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/UserManager.php';
@@ -80,7 +79,9 @@
 
 			switch ($paymentType) {
 			    case 1:
-			    	echo json_encode(iSunny::generateiSunnyObject($orderId, $amount, $orderDate));
+                    PaymentsManager::setAccount("zxc1234");
+                    PaymentsManager::setConfirmURL("http://10.0.2.2:8888/Checkout/iSunnyClientPaid.php");
+                    PaymentsManager::setNoticeURL("http://10.0.2.2:8888/Checkout/iSunnyServerPaid.php");
 			        break;
 			    case 2:
 					echo PayPal::getPayPalObject($orderId, $amount);

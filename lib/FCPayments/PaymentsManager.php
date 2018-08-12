@@ -2,6 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/Foundation/PaymentsConfig.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/LinePay.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/iSunny.php';
 
 class PaymentsManager
 {
@@ -10,6 +11,7 @@ class PaymentsManager
     {
         switch (PaymentsConfig::$paymentType) {
             case "1":
+                return iSunny::generateiSunnyObject($orderId, $amount, $orderDate);
                 break;
             case "2":
                 break;
@@ -80,6 +82,11 @@ class PaymentsManager
     public static function setConfirmURL($url)
     {
         PaymentsConfig::$confirmURL = $url;
+    }
+
+    public static function setNoticeURL($url)
+    {
+        PaymentsConfig::$noticeURL = $url;
     }
 
     //設定付款所用的貨幣

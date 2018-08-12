@@ -2,8 +2,6 @@
 	//iSuuny伺服器通知訂單付款完成
 
 	if( isset($_GET['orderID']) && isset($_POST["transID"]) ) {
-        error_log(print_r($_POST['rCodeMsg'],true));
-        error_log(print_r("server error", true));
 
 		$orderID = $_GET['orderID'];
 		$transID = $_POST['transID'];
