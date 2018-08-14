@@ -1,11 +1,12 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/UserPaymentsManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/Foundation/PaymentsConfig.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/LinePay.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/iSunny.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PayPal.php';
 
-class PaymentsManager
+class PaymentsManager implements UserPaymentsManager
 {
     //取得付款所需物件
     public static function getPaymentObject($orderId, $amount, $orderDate, $productName)

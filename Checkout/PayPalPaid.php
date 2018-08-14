@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PaymentsManager.php';
 
 $dbConfig = [
 	'host' => 'localhost',

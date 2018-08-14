@@ -9,7 +9,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/OrderManager.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/Foundation/HelpUtil.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/UserManager.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PaymentsManager.php';
     
 	
 	$headers = getallheaders();

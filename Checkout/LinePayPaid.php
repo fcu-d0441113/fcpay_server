@@ -3,7 +3,7 @@
      
      // include database and object files
      require_once $_SERVER['DOCUMENT_ROOT'] . '/Foundation/HelpUtil.php';
-     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager.php';
+     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PaymentsManager.php';
      
      if( isset($_GET['orderId']) && isset($_GET['amount']) && isset($_GET['transactionId'])) {
          
