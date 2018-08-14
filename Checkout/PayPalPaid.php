@@ -58,9 +58,7 @@ if (isset($_POST["txn_id"]) && isset($_POST["txn_type"])) {
 	// database.
     PaymentsManager::setPaymentType("2");
 	if (PaymentsManager::getPaymentConfirm($data['txn_id'], $data['payment_amount'], $_POST)) {
-        if ($data['payment_status'] === 'Completed'){
-            $status = 4;
-        }
+	    $status = 4;
         if (is_array($data)) {
             $stmt = $db->prepare('UPDATE `order_list` SET `serverPaid`= ?, `status` = ? WHERE `orderId`= ?');
             $stmt->bind_param(

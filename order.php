@@ -84,9 +84,9 @@
 			        break;
 			    case 2:
                     PaymentsManager::setAccount("fgh351279@gmail.com");
-                    PaymentsManager::setNoticeURL("http://fcorder.fcudata.science/payment-successful.html");
-                    PaymentsManager::setCancelURL("http://fcorder.fcudata.science/payment-cancelled.html");
-                    PaymentsManager::setConfirmURL("http://fcorder.fcudata.science/Checkout/PayPalPaid.php");
+                    PaymentsManager::setNoticeURL("http://10.0.2.2:8888/payment-successful.html");
+                    PaymentsManager::setCancelURL("http://10.0.2.2:8888/payment-cancelled.html");
+                    PaymentsManager::setConfirmURL("http://10.0.2.2:8888/Checkout/PayPalPaid.php");
                     PaymentsManager::setCurrency('TWD');
 			        break;
 			    case 3:
