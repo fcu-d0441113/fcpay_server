@@ -10,6 +10,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/Foundation/HelpUtil.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/ModelManager/UserManager.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PaymentsManager.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/Foundation/PaymentsEnum.php';
     
 	
 	$headers = getallheaders();
@@ -77,19 +78,19 @@
             PaymentsManager::setPaymentType($paymentType);
 
 			switch ($paymentType) {
-			    case 1:
+			    case PaymentsEnum::iSunny:
                     PaymentsManager::setAccount("zxc1234");
                     PaymentsManager::setConfirmURL("http://10.0.2.2:8888/Checkout/iSunnyClientPaid.php");
                     PaymentsManager::setNoticeURL("http://10.0.2.2:8888/Checkout/iSunnyServerPaid.php");
 			        break;
-			    case 2:
+			    case PaymentsEnum::PayPal:
                     PaymentsManager::setAccount("fgh351279@gmail.com");
                     PaymentsManager::setNoticeURL("http://10.0.2.2:8888/payment-successful.html");
                     PaymentsManager::setCancelURL("http://10.0.2.2:8888/payment-cancelled.html");
                     PaymentsManager::setConfirmURL("http://10.0.2.2:8888/Checkout/PayPalPaid.php");
                     PaymentsManager::setCurrency('TWD');
 			        break;
-			    case 3:
+			    case PaymentsEnum::LinePay:
                     PaymentsManager::setAccount('1591021350','49d286199c615f1d311b56a2910357f5');
                     PaymentsManager::setConfirmURL('http://10.0.2.2:8888/Checkout/LinePayPaid.php');
                     PaymentsManager::setCurrency('TWD');

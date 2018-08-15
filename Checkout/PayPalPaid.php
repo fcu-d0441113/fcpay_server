@@ -1,6 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PaymentsManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/Foundation/PaymentsEnum.php';
 
 $dbConfig = [
 	'host' => 'localhost',
@@ -56,7 +57,7 @@ if (isset($_POST["txn_id"]) && isset($_POST["txn_type"])) {
 	// We need to verify the transaction comes from PayPal and check we've not
 	// already processed the transaction before adding the payment to our
 	// database.
-    PaymentsManager::setPaymentType("2");
+    PaymentsManager::setPaymentType(PaymentsEnum::PayPal);
 	if (PaymentsManager::getPaymentConfirm($data['txn_id'], $data['payment_amount'], $_POST)) {
 	    $status = 4;
         if (is_array($data)) {

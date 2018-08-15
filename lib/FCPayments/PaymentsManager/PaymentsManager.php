@@ -2,6 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/UserPaymentsManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/Foundation/PaymentsConfig.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/Foundation/PaymentsEnum.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/LinePay.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/iSunny.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PayPal.php';
@@ -12,41 +13,38 @@ class PaymentsManager implements UserPaymentsManager
     public static function getPaymentObject($orderId, $amount, $orderDate, $productName)
     {
         switch (PaymentsConfig::$paymentType) {
-            case "1":
+            case PaymentsEnum::iSunny:
                 return iSunny::generateiSunnyObject($orderId, $amount, $orderDate);
                 break;
-            case "2":
+            case PaymentsEnum::PayPal:
                 return PayPal::getPayPalObject($orderId, $amount);
                 break;
-            case "3":
+            case PaymentsEnum::LinePay:
                 LinePay::setLinePayHeader();
                 return LinePay::getLinePayObject($orderId, $amount, $productName);
-            case "4":
                 break;
             default:
                 return "Error PaymentType";
         }
-        return "";
     }
 
     //取得驗證結果
     public static function getPaymentConfirm($transactionId, $amount, $data)
     {
         switch (PaymentsConfig::$paymentType) {
-            case "1":
+            case PaymentsEnum::iSunny:
+                return null;
                 break;
-            case "2":
+            case PaymentsEnum::PayPal:
                 return PayPal::verifyTransaction($data);
                 break;
-            case "3":
+            case PaymentsEnum::LinePay:
                 LinePay::setLinePayHeader();
                 return LinePay::ConfirmLinePay($transactionId, $amount);
-            case "4":
                 break;
             default:
                 return "Error PaymentType";
         }
-        return "";
     }
 
     //設定PaymentType

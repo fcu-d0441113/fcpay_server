@@ -4,6 +4,7 @@
      // include database and object files
      require_once $_SERVER['DOCUMENT_ROOT'] . '/Foundation/HelpUtil.php';
      require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/PaymentsManager/PaymentsManager.php';
+     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/FCPayments/Foundation/PaymentsEnum.php';
      
      if( isset($_GET['orderId']) && isset($_GET['amount']) && isset($_GET['transactionId'])) {
          
@@ -27,7 +28,7 @@
          //----------------------------------------------------
 
          //confirm付款
-         PaymentsManager::setPaymentType("3");
+         PaymentsManager::setPaymentType(PaymentsEnum::LinePay);
          PaymentsManager::setAccount('1591021350','49d286199c615f1d311b56a2910357f5');
          PaymentsManager::setCurrency('TWD');
          $resultMessage = PaymentsManager::getPaymentConfirm($transactionId, $amount, null);
